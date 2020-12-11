@@ -1,0 +1,12 @@
+.alert {
+    padding: 5px;
+    margin: 5px 0 10px 0;
+    text-align: center;
+    color: #fff;
+}
+.problem {
+    background: red;
+}
+.ok {
+    background: limegreen;
+}
