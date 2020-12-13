@@ -1,5 +1,5 @@
 class Task {
-    constructor(task) {
-        this.task = task;
-    }
+  constructor(task) {
+    this.task = task;
+  }
 }
