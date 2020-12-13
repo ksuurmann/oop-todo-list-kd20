@@ -28,12 +28,12 @@ class LS {
     return tasks;
   }
 
-  deleteTask(taskItem) {
+  deleteTask(task) {
     // get all data from LS
     const tasks = this.getTasks();
-    // control each task
-    tasks.forEach(function (task) {
-      if (taskItem === task) {
+    // controll each contact
+    tasks.forEach(function (task, index) {
+      if (task.taskName === task) {
         tasks.splice(index, 1);
       }
     });

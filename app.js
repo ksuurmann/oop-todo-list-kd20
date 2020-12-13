@@ -59,28 +59,48 @@ function getTasks() {
     ui.addTaskToTable(taskData);
   });
 }
-// removeTask
+
+// filterTasks function - works
+function filterTasks(e) {
+  const text = e.target.value.toLowerCase();
+  document.querySelectorAll(".collection-item").forEach(function (task) {
+    const item = task.firstChild.textContent.toLowerCase();
+    if (item.indexOf(text) != -1) {
+      task.style.display = "block";
+    } else {
+      task.style.display = "none";
+    }
+  });
+}
+
+// clearTasks function - works
+function clearTasks(e) {
+  taskList.innerHTML = "";
+  // localStorage.clear();
+  storeTaskInLocalStorage();
+}
+
+// deleteTask
 function deleteTask(e) {
   // create new ui object
   const ui = new UI();
   // create new Local Storage object
   const ls = new LS();
-  // delete task
+  // delete contact
   const deleteBtn = e.target;
   const task =
     deleteBtn.parentElement.parentElement.previousElementSibling
       .previousElementSibling.previousElementSibling.previousElementSibling
       .previousElementSibling.previousElementSibling.textContent;
-
   // delete from UI
-  ui.deleteTaskFromTable(e.target);
+  ui.deletePersonFromTable(e.target);
   // delete from LS
-  const isDeleted = ls.deleteTaskFromTable(task);
+  const isDeleted = ls.deleteTask(task);
   // set alert
   if (isDeleted) {
-    ui.alertMessage("Your selected task is removed form your list!", "ok");
+    ui.alertMessage("Your selceted task is deleted", "ok");
   } else {
-    ui.alertMessage("There is a problem with removing that task", "problem");
+    ui.alertMessage("There are some problems with deleting", "problem");
   }
   e.preventDefault();
 }
@@ -99,18 +119,5 @@ function clearTask(e) {
     ui.alertMessage("All tasks are cleared", "ok");
   } else {
     ui.alertMessage("The tasks cannot remove!", "problem");
-  }
-
-  // filterTasks
-  function filterTask(e) {
-    const text = e.target.value.toLowerCase();
-    for (i = 0; i < taska.rows.length; i++) {
-      const item = tasks.rows[i].outerText.toLowerCase();
-      if (taskData.indexOf(text) != -1) {
-        task.rows[i].style.display = "";
-      } else {
-        task.rows[i].style.display = "none";
-      }
-    }
   }
 }

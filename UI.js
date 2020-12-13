@@ -44,7 +44,7 @@ class UI {
   }
 
   clearInputs() {
-    document.querySelector("#task").value = "";
+    document.querySelector("#task-list").value = "";
   }
 
   clearTasks() {
